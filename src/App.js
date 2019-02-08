@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import './App.css';
 import {Header} from './assets/Header';
 import PartSelectorList from './components/PartSelectorList';
-import {FEATURES} from './assets/FEATURES';
 import Invoice from './components/Invoice';
 
 class App extends Component {
@@ -39,46 +38,45 @@ class App extends Component {
   }
 
   render() {
-
-    //REMOVE BETWEEN HERE
-    const features = Object.keys(FEATURES)
-    //PartSelector
-          .map(partKey => {
-            const options = FEATURES[partKey].map((item, index) => {
-              const selectedClass = item.name === this.state.selected[partKey].name ? 'feature__selected' : '';
-              const featureClass = 'feature__option ' + selectedClass;
-              // updateFeature takes current Part category and current item and changes selected state based on the 
-              return <li key={index} className="feature__item">
-                <div className={featureClass}
-                  
-                  onClick={e => this.updateFeature(partKey, item)}> 
-                  { item.name }
-                  ({ new Intl.NumberFormat('en-US', { style: 'currency', currency: 'USD'})
-                    .format(item.cost) })
-                </div>
-              </li>
-            });
-
-//PartSelectorList
-            return <div className="feature" key={partKey}>
-              <div className="feature__name">{partKey}</div>
-              <ul className="feature__list">
-                { options }
-              </ul>
-            </div>
-          });
-// REMOVE ABOVE HERE
-
-
     return (
       <div className="App">
           <Header />
         <main>
-          <PartSelectorList features={FEATURES} />
-          <Invoice />
+          <PartSelectorList selected={this.state.selected}/>
+          <Invoice selected={this.state.selected}/>
         </main>
       </div>
     );
+
+    //REMOVE BETWEEN HERE
+//     const features = Object.keys(FEATURES)
+//     //PartSelector
+//           .map(partKey => {
+//             const options = FEATURES[partKey].map((item, index) => {
+//               const selectedClass = item.name === this.state.selected[partKey].name ? 'feature__selected' : '';
+//               const featureClass = 'feature__option ' + selectedClass;
+//               // updateFeature takes current Part category and current item and changes selected state based on the 
+//               return <li key={index} className="feature__item">
+//                 <div className={featureClass}
+                  
+//                   onClick={e => this.updateFeature(partKey, item)}> 
+//                   { item.name }
+//                   ({ new Intl.NumberFormat('en-US', { style: 'currency', currency: 'USD'})
+//                     .format(item.cost) })
+//                 </div>
+//               </li>
+//             });
+
+// //PartSelectorList
+//             return <div className="feature" key={partKey}>
+//               <div className="feature__name">{partKey}</div>
+//               <ul className="feature__list">
+//                 { options }
+//               </ul>
+//             </div>
+//           });
+// REMOVE ABOVE HERE
+
   }
 }
 
