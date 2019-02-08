@@ -1,5 +1,8 @@
 import React, { Component } from 'react';
 import './App.css';
+import {Header} from './assets/Header';
+import PartSelectorList from './components/PartSelectorList';
+import {FEATURES} from './assets/FEATURES';
 
 class App extends Component {
   constructor(props){
@@ -49,9 +52,9 @@ class App extends Component {
           .reduce((acc, curr) => acc + this.state.selected[curr].cost, 0);    
 
 
-    const features = Object.keys(this.props.features)
+    const features = Object.keys(FEATURES)
           .map(key => {
-            const options = this.props.features[key].map((item, index) => {
+            const options = FEATURES[key].map((item, index) => {
               const selectedClass = item.name === this.state.selected[key].name ? 'feature__selected' : '';
               const featureClass = 'feature__option ' + selectedClass;
               return <li key={index} className="feature__item">
@@ -75,16 +78,9 @@ class App extends Component {
 
     return (
       <div className="App">
-        <header>
-          <h1>ELF Computing</h1>
-          <h3>Laptops</h3>
-          <h5>Customize your laptop</h5>  
-        </header>      
+          <Header />
         <main>
-          <section className="main__form">
-            <h3>TECH SPECS AND CUSTOMIZATIONS</h3>
-            { features }
-          </section>
+          <PartSelectorList />
           <section className="main__summary">
             <h3>NEW GREENLEAF 2018</h3>
             {summary}
