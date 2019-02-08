@@ -1,17 +1,15 @@
-import React, {Component} from 'react';
+import React from 'react';
 import PartSelector from './PartSelector';
-import {FEATURES} from '../assets/FEATURES';
 
 
 // partKey === FEATURES[index] .... think about {FEATURES[i]}
-class PartSelectorList extends Component {
-    render() {
+function PartSelectorList (props) {
         return (
             <section className="main__form">
                 <h3>TECH SPECS AND CUSTOMIZATIONS</h3>
-                    {Object.keys(FEATURES).map(partType => <PartSelector partKey={partType} selected={this.props.selected}/>)}                       
+                    {Object.keys(props.features).map(partType => <PartSelector features={props.features} partKey={partType} selected={props.selected} updateFeature={props.updateFeature}/>)}                       
             </section>
-        )};
+        );
     }
 
 export default PartSelectorList;

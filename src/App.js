@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import './App.css';
-import {Header} from './assets/Header';
+import {Header} from './components/Header';
 import PartSelectorList from './components/PartSelectorList';
 import Invoice from './components/Invoice';
 
@@ -29,7 +29,7 @@ class App extends Component {
     }
   }
 
-  updateFeature(feature, newValue) {
+  updateFeature = (feature, newValue) => {
     const selected = Object.assign({}, this.state.selected);
     selected[feature] = newValue;
     this.setState({
@@ -42,8 +42,8 @@ class App extends Component {
       <div className="App">
           <Header />
         <main>
-          <PartSelectorList selected={this.state.selected}/>
-          <Invoice selected={this.state.selected}/>
+          <PartSelectorList features={this.props.features} selected={this.state.selected} updateFeature={this.updateFeature}/>
+          <Invoice features={this.props.features} selected={this.state.selected}/>
         </main>
       </div>
     );
